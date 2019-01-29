@@ -1,56 +1,32 @@
-﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-for details on configuring this project to bundle and minify static web assets. */
+﻿.form-control-borderless {
+  border: none;
+}
 
-a.navbar-brand {
-  white-space: normal;
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+.img-bg {
+  height: 580px;
+  background: url("../Img/background.jpg") no-repeat center center;
+  background-size: cover;
+}
+.card {
+  margin-top: 200px;
+}
+.sm-3 {
   text-align: center;
-  word-break: break-all;
+  margin: 20px;
 }
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  font-size: 14px;
+.hotel-img {
+  height: 150px;
+  background: url("../Img/hotel.jpg") no-repeat center center;
 }
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.hotels-card {
+  background-color: #E5E4E2;
+  padding: 50px;
 }
-
-.border-top {
-  border-top: 1px solid #e5e5e5;
-}
-.border-bottom {
-  border-bottom: 1px solid #e5e5e5;
-}
-
-.box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-}
-
-button.accept-policy {
-  font-size: 1rem;
-  line-height: inherit;
-}
-
-/* Sticky footer styles
--------------------------------------------------- */
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  /* Set the fixed height of the footer here */
-  height: 60px;
-  line-height: 60px; /* Vertically center the text there */
+.element {
+  background-color: white;
 }
