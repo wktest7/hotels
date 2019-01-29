@@ -6,3 +6,15 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<button type="button" id="clickBtn" class="btn btn-success">Click!</button>
+
+@section Scripts
+{
+    <script>
+        $("#clickBtn").click(function () {
+            alert("Clicked.");
+        });
+    </script>
+}
+
