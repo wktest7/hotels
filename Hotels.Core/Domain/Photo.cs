@@ -6,11 +6,22 @@ namespace Hotels.Core.Domain
 {
     public class Photo
     {
-        public int PhotoId { get; set; }
+        public Guid PhotoId { get; set; }
         public string Path { get; set; }
 
-        public int HotelId { get; set; }
+        public Guid HotelId { get; set; }
         public Hotel Hotel { get; set; }
 
+        protected Photo()
+        {
+
+        }
+
+        public Photo(Guid photoId, string path, Guid hotelId)
+        {
+            PhotoId = photoId;
+            Path = path;
+            HotelId = hotelId;
+        }
     }
 }

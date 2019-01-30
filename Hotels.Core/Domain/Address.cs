@@ -7,7 +7,7 @@ namespace Hotels.Core.Domain
 {
     public class Address
     {
-        public int AddressId { get; set; }
+        public Guid AddressId { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
         public string PostalCode { get; set; }
@@ -17,7 +17,28 @@ namespace Hotels.Core.Domain
         public Region Region { get; set; }
 
         public Hotel Hotel { get; set; }
+
+        protected Address()
+        {
+
+        }
+
+        public Address(Guid addressId, string city, string street, string postalCode, string phone,
+            string website, Voivodeship voivodeship, Region region)
+        {
+            AddressId = addressId;
+            City = city;
+            Street = street;
+            PostalCode = postalCode;
+            Phone = phone;
+            Website = website;
+            Voivodeship = voivodeship;
+            Region = region;
+        }
+
+      
     }
+
 
     public enum Region
     {

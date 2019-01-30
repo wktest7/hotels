@@ -14,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Hotels.Infrastructure.EF;
 using Hotels.Core.Domain;
+using Hotels.Core.Repositories;
+using Hotels.Infrastructure.Repositories;
 
 namespace Hotels
 {
@@ -45,6 +47,9 @@ namespace Hotels
                 options.Password.RequireUppercase = false;
             });
 
+            services.AddScoped<IHotelRepository, HotelRepositoryInMemory>();
+
+
             services.AddDbContext<HotelsDbContext>(options => 
              options.UseInMemoryDatabase("InMemoryDB"));
 
@@ -53,7 +58,11 @@ namespace Hotels
             //        Configuration.GetConnectionString("DefaultConnection"),
             //        x => x.MigrationsAssembly("Hotels.Infrastructure")));
 
-            services.AddDefaultIdentity<AppUser>()
+            //services.AddDefaultIdentity<AppUser>()
+            //    .AddDefaultUI(UIFramework.Bootstrap4)
+            //    .AddEntityFrameworkStores<HotelsDbContext>();
+
+            services.AddIdentity<AppUser, IdentityRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<HotelsDbContext>();
 
@@ -61,7 +70,9 @@ namespace Hotels
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env,
+            UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager,
+            HotelsDbContext context)
         {
             if (env.IsDevelopment())
             {
@@ -80,6 +91,9 @@ namespace Hotels
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+
+            UserSeeder.Seed(userManager, roleManager).Wait();
+            DataSeeder.Seed(context, userManager).Wait();
 
             app.UseMvc(routes =>
             {

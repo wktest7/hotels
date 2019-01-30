@@ -22,12 +22,15 @@ namespace Hotels.Controllers
         // GET: Tests
         public async Task<IActionResult> Index()
         {
-            var hotelsDbContext = _context.Hotels.Include(h => h.Address).Include(h => h.AppUser);
+            var hotelsDbContext = _context.Hotels
+                .Include(h => h.Address)
+                .Include(h => h.AppUser)
+                .Include(h => h.Photos);
             return View(await hotelsDbContext.ToListAsync());
         }
 
         // GET: Tests/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
             {
@@ -63,6 +66,7 @@ namespace Hotels.Controllers
         {
             if (ModelState.IsValid)
             {
+                hotel.HotelId = Guid.NewGuid();
                 _context.Add(hotel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -73,7 +77,7 @@ namespace Hotels.Controllers
         }
 
         // GET: Tests/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
             {
@@ -95,7 +99,7 @@ namespace Hotels.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("HotelId,Name,Description,PriceMin,PriceMax,ThumbnailPath,AppUserId,AddressId,HotelType")] Hotel hotel)
+        public async Task<IActionResult> Edit(Guid id, [Bind("HotelId,Name,Description,PriceMin,PriceMax,ThumbnailPath,AppUserId,AddressId,HotelType")] Hotel hotel)
         {
             if (id != hotel.HotelId)
             {
@@ -128,7 +132,7 @@ namespace Hotels.Controllers
         }
 
         // GET: Tests/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
             {
@@ -150,7 +154,7 @@ namespace Hotels.Controllers
         // POST: Tests/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var hotel = await _context.Hotels.FindAsync(id);
             _context.Hotels.Remove(hotel);
@@ -158,7 +162,7 @@ namespace Hotels.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool HotelExists(int id)
+        private bool HotelExists(Guid id)
         {
             return _context.Hotels.Any(e => e.HotelId == id);
         }

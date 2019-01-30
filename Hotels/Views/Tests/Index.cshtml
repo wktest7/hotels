@@ -55,13 +55,21 @@
                 @Html.DisplayFor(modelItem => item.PriceMax)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ThumbnailPath)
+                <img src="@Url.Content(item.ThumbnailPath)" width="200" height="200" />
+
+                <br />
+                @foreach (var photo in item.Photos)
+                {
+                    <img src="@Url.Content(photo.Path)" width="40" height="40" />
+                }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.AppUser.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Address.AddressId)
+                @Html.DisplayFor(modelItem => item.Address.City),
+                @Html.DisplayFor(modelItem => item.Address.PostalCode),
+                @Html.DisplayFor(modelItem => item.Address.Street)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.HotelType)
