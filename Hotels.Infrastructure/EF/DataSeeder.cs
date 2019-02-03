@@ -39,6 +39,9 @@ namespace Hotels.Infrastructure.EF
                 addresses.Add(new Address(Guid.NewGuid(), "Jasień", "Jasień 12", "38-700", "444555111",
                   "https://e-nocleg.pl/nocleg,jasionka.html",
                   Voivodeship.Subcarpathian, Region.Mountains));
+                addresses.Add(new Address(Guid.NewGuid(), "XXXXXX", "Jasień 12", "38-700", "444555111",
+                 "https://e-nocleg.pl/nocleg,jasionka.html",
+                 Voivodeship.Subcarpathian, Region.Mountains));
 
                 context.Addresses.AddRange(addresses);
 
