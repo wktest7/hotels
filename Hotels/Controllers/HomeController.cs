@@ -20,6 +20,16 @@ namespace Hotels.Controllers
             return View();
         }
 
+        public IActionResult Second()
+        {
+            return View();
+        }
+
+        public IActionResult Third()
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
