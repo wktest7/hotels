@@ -342,11 +342,6 @@ section
 	margin-left: 12px;
 }
 
-.offers_rating i::before
-{
-	font-size: 13px;
-	margin-right: 2px;
-}
 .offers_text
 {
 	font-size: 14px;
